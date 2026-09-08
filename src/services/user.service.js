@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import {
   addUser,
   changemMyPass,
+  changeStatus,
   findAllUsers,
   findUserByEmail,
   findUserById,
@@ -73,5 +74,21 @@ export const updatePass = async (id, currentPass, newPass) => {
   const hashPass = await bcrypt.hash(newPass, 10);
   console.log(hashPass);
   const updatedUser = await changemMyPass(id, hashPass);
+  return updatedUser;
+};
+export const updateUserStatus = async (id, status) => {
+  const user = await findUserById(id, false);
+  if (!user) {
+    const err = new Error("User not found");
+    err.status = 404;
+    throw err;
+  }
+  const allowedStatuses = ["active", "inactive"];
+  if (!allowedStatuses.includes(status)) {
+    const err = new Error("Invalid user status");
+    err.status = 400;
+    throw err;
+  }
+  const updatedUser = await changeStatus(id, status);
   return updatedUser;
 };

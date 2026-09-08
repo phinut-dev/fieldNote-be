@@ -4,6 +4,7 @@ import {
   getUserById,
   getUsers,
   updatePass,
+  updateUserStatus,
 } from "../services/user.service.js";
 import { sendResponse } from "../utils/response.js";
 export const getUsersController = async (req, res, next) => {
@@ -60,6 +61,15 @@ export const changeMyPasswordController = async (req, res, next) => {
 };
 export const updateUserStatusController = async (req, res, next) => {
   try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const updatedUser = await updateUserStatus(id, status);
+    return sendResponse(
+      res,
+      200,
+      "User status updated successfully",
+      updatedUser,
+    );
   } catch (err) {
     next(err);
   }

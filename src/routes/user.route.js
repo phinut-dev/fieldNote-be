@@ -36,14 +36,19 @@ router.get(
   getUserByIdController,
 ); //done
 // UPDATE USER
-router.put("/:id", authenticate, authorizeRoles("admin"), updateUserController);
+router.patch(
+  "/:id",
+  authenticate,
+  authorizeRoles("admin"),
+  updateUserController,
+);
 // UPDATE USER STATUS
-router.put(
+router.patch(
   "/:id/status",
   authenticate,
   authorizeRoles("admin"),
   updateUserStatusController,
-);
+); //done
 // RESET USER PASSWORD BY ADMIN
 router.post(
   "/:id/password",
