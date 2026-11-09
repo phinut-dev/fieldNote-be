@@ -6,13 +6,13 @@ import { sendResponse } from "../src/utils/response.js";
 const app = express();
 const port = process.env.PORT || 3000;
 let corsOptions = {
-  origin: [],
+  origin: ["http://localhost:5173", "https://field-note-fe.vercel.app"],
   credentials: true,
   optionsSuccessStatus: 200,
 };
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use("/api/v1", router);
 app.use((req, res) => {
