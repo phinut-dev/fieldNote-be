@@ -42,7 +42,6 @@ export const getAssignableWorkersController = async (req, res, next) => {
 };
 export const createUserController = async (req, res, next) => {
   try {
-    console.log(req.body);
     const user = await createUser(req.body);
     return sendResponse(res, 201, "User created successfully", user);
   } catch (err) {
@@ -74,15 +73,9 @@ export const updateUserStatusController = async (req, res, next) => {
     next(err);
   }
 };
-export const updateUserController = async (req, res, next) => {
-  try {
-  } catch (err) {
-    next(err);
-  }
+export const updateUserController = (req, res) => {
+  return sendResponse(res, 501, "User update is not implemented yet");
 };
-export const resetUserPasswordController = async (req, res, next) => {
-  try {
-  } catch (err) {
-    next(err);
-  }
+export const resetUserPasswordController = (req, res) => {
+  return sendResponse(res, 501, "Password reset is not implemented yet");
 };

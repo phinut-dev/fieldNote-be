@@ -50,12 +50,10 @@ export const findWorkerAssignable = async () => {
 };
 export const addUser = async (user) => {
   try {
-    console.log(user, "user");
     const [result] = await db.query(
       "insert into users (name, email, password, role) values (?, ?, ?, ?)",
       [user.name, user.email, user.password, user.role],
     );
-    console.log(db);
     return result;
   } catch (err) {
     throw new Error(err.sqlMessage || err.message);

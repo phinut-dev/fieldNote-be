@@ -45,13 +45,11 @@ export const createUser = async ({ name, email, password, role }) => {
     throw err;
   }
   const user = { name, email, password: hashPass, role };
-  console.log(user);
   const newUser = await addUser(user);
   return { id: newUser.insertId, name, email, role };
 };
 export const updatePass = async (id, currentPass, newPass) => {
   const user = await findUserById(id, true);
-  console.log(user, "userl");
   if (!user) {
     const err = new Error("User not found");
     err.status = 404;
@@ -72,7 +70,6 @@ export const updatePass = async (id, currentPass, newPass) => {
     throw err;
   }
   const hashPass = await bcrypt.hash(newPass, 10);
-  console.log(hashPass);
   const updatedUser = await changemMyPass(id, hashPass);
   return updatedUser;
 };

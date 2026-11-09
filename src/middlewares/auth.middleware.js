@@ -34,8 +34,6 @@ export const authorizeRoles = (...allowedRoles) => {
       error.status = 403;
       return next(error);
     }
-    console.log(req.user, allowedRoles);
-
     next();
   };
 };

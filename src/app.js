@@ -23,8 +23,16 @@ app.use((error, req, res, next) => {
     return next(error);
   }
 
+  console.error("ERROR:", {
+    message: error.message,
+    code: error.code,
+    stack: error.stack,
+    method: req.method,
+    url: req.originalUrl,
+  });
+
   if (error instanceof SyntaxError && error.status === 400 && "body" in error) {
-    return sendResponse(res, 400, "Invalid JSON format");
+    return sendResponse(res, 400, "Invalid JSON format", null);
   }
 
   const status = error.status || 500;
@@ -33,9 +41,9 @@ app.use((error, req, res, next) => {
     res,
     status,
     status === 500 ? "Internal server error" : error.message,
+    null,
   );
 });
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
