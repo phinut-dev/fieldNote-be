@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import router from "./routes/index.js";
-import { sendResponse } from "./utils/response.js";
+import router from "../src/routes/index.js";
+import { sendResponse } from "../src/utils/response.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
