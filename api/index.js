@@ -6,7 +6,7 @@ import { sendResponse } from "../src/utils/response.js";
 const app = express();
 const port = process.env.PORT || 3000;
 let corsOptions = {
-  origin: ["http://localhost:5173", "https://field-note-fe.vercel.app"],
+  origin: ["http://localhost:5173", "https://field-note-fe.vercel.app","https://fieldnote-phinut.vercel.app"],
   credentials: true,
   optionsSuccessStatus: 200,
 };
